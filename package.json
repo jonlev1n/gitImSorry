@@ -1,8 +1,8 @@
 {
 	"name": "git-sorry",
-	"version": "0.1",
+	"version": "0.1.0",
 	"bin": {
-		"git-sorry-setup": "./addPreCommitHook.js"
+		"git-sorry-setup": "./addHook.js"
 	},
 	"dependencies": {
 		"child_process": "^1.0.2",

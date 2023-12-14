@@ -5,13 +5,12 @@ function addPreCommitHook(directory) {
 	try {
 		const hookContent = `#!/bin/sh
 
-last_commit_message=$(git log --format=%B -n 1)
-amended_message="I'm sorry: \$last_commit_message"
-git commit --amend -m "\$amended_message"
+commit_msg="$(cat $1)"
+amended_message="I'm sorry: \$commit_message" > $1
 `;
 
 		const hooksDir = path.join(directory, ".git", "hooks");
-		const preCommitPath = path.join(hooksDir, "pre-commit");
+		const preCommitPath = path.join(hooksDir, "prepare-commit-msg");
 
 		// Check if the .git/hooks directory exists
 		if (!fs.existsSync(hooksDir)) {
@@ -22,7 +21,7 @@ git commit --amend -m "\$amended_message"
 		// Write the hook content to pre-commit file
 		fs.writeFileSync(preCommitPath, hookContent, { mode: 0o755 }); // Make the file executable
 
-		console.log("Pre-commit hook added successfully.");
+		console.log("prepare-message-commit hook added successfully.");
 	} catch (error) {
 		console.error("An error occurred:", error.message);
 	}
