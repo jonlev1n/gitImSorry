@@ -1,12 +1,31 @@
 {
-	"name": "git-sorry",
-	"version": "0.1.0",
-	"bin": {
-		"git-sorry-setup": "./addHook.js"
-	},
-	"dependencies": {
-		"child_process": "^1.0.2",
-		"fs": "^0.0.1-security",
-		"path": "^0.12.7"
-	}
+  "name": "@jonlev1n/git-sorry",
+  "version": "0.1.0",
+  "bin": {
+    "git-sorry-setup": "addHook.js"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "description": "1. Simply run the command `./node_modules/bin/git-sorry-setup` to initialize in your repo, and voila! You are now sorry",
+  "main": "addHook.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonlev1n/gitImSorry.git"
+  },
+  "keywords": [
+    "sorry"
+  ],
+  "author": "Jon Levin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonlev1n/gitImSorry/issues"
+  },
+  "homepage": "https://github.com/jonlev1n/gitImSorry#readme"
 }
