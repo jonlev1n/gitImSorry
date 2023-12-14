@@ -1,16 +1,12 @@
 const fs = require("fs");
 const path = require("path");
 
-function addPreCommitHook(directory) {
+function addCommitMessageHook(directory) {
 	try {
-		const hookContent = `#!/bin/sh
-
-commit_msg="$(cat $1)"
-amended_message="I'm sorry: \$commit_message" > $1
-`;
-
+		const currentDirectory = process.cwd();
+		const prepare_commit_msg = path.join(currentDirectory, "prepare-commit-msg");
 		const hooksDir = path.join(directory, ".git", "hooks");
-		const preCommitPath = path.join(hooksDir, "prepare-commit-msg");
+		const hookPath = path.join(hooksDir, "prepare-commit-msg");
 
 		// Check if the .git/hooks directory exists
 		if (!fs.existsSync(hooksDir)) {
@@ -19,7 +15,7 @@ amended_message="I'm sorry: \$commit_message" > $1
 		}
 
 		// Write the hook content to pre-commit file
-		fs.writeFileSync(preCommitPath, hookContent, { mode: 0o755 }); // Make the file executable
+		fs.copyFileSync(prepare_commit_msg, hookPath, { mode: 0o755 }); // Make the file executable
 
 		console.log("prepare-message-commit hook added successfully.");
 	} catch (error) {
@@ -27,4 +23,4 @@ amended_message="I'm sorry: \$commit_message" > $1
 	}
 }
 
-module.exports = addPreCommitHook;
+module.exports = addCommitMessageHook;
